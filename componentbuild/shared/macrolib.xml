@@ -305,11 +305,7 @@
                 </else>
             </if>
 
-            <loadfile srcfile="@{dir}/${@{module}@{lang}_strs}" property="@{module}@{lang}-strs-loaded" />
-
-            <echo level="info">Wrapping @{dir}/${@{module}@{lang}_strs} in YUI.add, Y.Intl.add</echo>
-
-            <copy file="@{langtemplate}" tofile="@{dest}/${@{module}@{lang}_strs}" overwrite="true">
+            <copy file="@{langtemplate}" tofile="@{dest}/${@{module}@{lang}_fullname}.js" overwrite="true" outputencoding="utf-8">
                 <filterset>
                     <filter token="LANG" value="@{lang}" />
                     <filter token="LANG_MODULE" value="lang/${@{module}@{lang}_fullname}" />
@@ -462,6 +458,6 @@
             <echo level="verbose">Adding CSS Registration Code to @{file}</echo>
             <concat destfile="@{file}" append="true" fixlastline="true">${@{module}}</concat>
         </sequential>
-    </macrodef>    
+    </macrodef>
 	
 </project>
